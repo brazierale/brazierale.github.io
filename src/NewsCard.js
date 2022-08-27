@@ -1,5 +1,6 @@
 import newsSprite from "./assets/news-cards.png"
 import newsBack from "./assets/news-back.png";
+import './NewsCard.css'
 
 const NewsCard = ({card, cardIndex, revealCard}) => {
   
@@ -17,21 +18,23 @@ const NewsCard = ({card, cardIndex, revealCard}) => {
   }
 
   if ( card === null || !card.revealed ) {
-    console.log('unrevealed');
     const backStyle = {
       height: 260,
       width: 360,
       margin: "auto",
       background: `url(${newsBack})`
     }
-    return <div
-      className="News-unrevealed"
-      style={backStyle}
-      onClick={() => revealCard(cardIndex)}
-    />
+    return (
+      <div className="News-card">
+        <div
+          className="News-unrevealed"
+          style={backStyle}
+          onClick={() => revealCard(cardIndex)}
+        />
+      </div>
+    )
   }
   else {
-    console.log('revealed');
     const cardPosition = getCardPosition(card.number);
     
     const cardStyle = {
@@ -41,11 +44,13 @@ const NewsCard = ({card, cardIndex, revealCard}) => {
       background: `url(${newsSprite}) ${cardPosition.x}px ${cardPosition.y}px`
     }
     return (
-      <div
-        className="News-revealed"
-        style={cardStyle}
-        onClick={() => revealCard(cardIndex)}
-      />
+      <div className="News-card">
+        <div
+          className="News-revealed"
+          style={cardStyle}
+          onClick={() => revealCard(cardIndex)}
+        />
+      </div>
     )
   }
 }

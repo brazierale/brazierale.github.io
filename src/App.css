@@ -7,7 +7,24 @@
 }
 
 .Cards-container {
-  display: block;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: auto;
+}
+
+.Next-news-container{
+  display: flex;
+  justify-content: center;
+}
+
+.Shuffle-button-container {
+  display: flex;
+  justify-content: center;
+}
+
+.Shuffle-button {
+  bottom: 24px;
 }
 
 button {
