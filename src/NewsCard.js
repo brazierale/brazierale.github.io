@@ -1,9 +1,7 @@
 import newsSprite from "./assets/news-cards.png"
 import newsBack from "./assets/news-back.png";
 
-function NewsCard(props) {
-
-  console.log(props)
+const NewsCard = ({card, cardIndex, revealCard}) => {
   
   const getCardPosition = (newsNumber) => {
     const x = (newsNumber - 1) % 10;
@@ -18,23 +16,23 @@ function NewsCard(props) {
     return { x: xPx, y: yPx};
   }
 
-  console.log(props.card);
-  if ( props.card === null || !props.card.revealed ) {
+  if ( card === null || !card.revealed ) {
+    console.log('unrevealed');
     const backStyle = {
       height: 260,
       width: 360,
       margin: "auto",
       background: `url(${newsBack})`
     }
-    console.log(`${props.card.number} not revealed`);
     return <div
-      className="newsBack"
+      className="News-unrevealed"
       style={backStyle}
-      onClick={() => props.revealCard()}
+      onClick={() => revealCard(cardIndex)}
     />
   }
   else {
-    const cardPosition = getCardPosition(props.card.number);
+    console.log('revealed');
+    const cardPosition = getCardPosition(card.number);
     
     const cardStyle = {
       height: 260,
@@ -42,12 +40,11 @@ function NewsCard(props) {
       margin: "auto",
       background: `url(${newsSprite}) ${cardPosition.x}px ${cardPosition.y}px`
     }
-    console.log(`${props.card.number} revealed`);
     return (
       <div
-        className="newsCard"
+        className="News-revealed"
         style={cardStyle}
-        onClick={() => props.revealCard()}
+        onClick={() => revealCard(cardIndex)}
       />
     )
   }

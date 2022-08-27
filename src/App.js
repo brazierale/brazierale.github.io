@@ -2,13 +2,21 @@ import { useState } from 'react';
 import NewsCard from './NewsCard';
 import './App.css';
 
-function App() {
-  const [nextCard, setNextCard] = useState({ number: 12, revealed: false})
+const App = () => {
 
-  const revealCard = () => {
-    const nextCard = JSON.parse(localStorage.getItem("nextCard"));
-    setNextCard({ ...nextCard, revealed: true });
-    localStorage.setItem("nextCard", JSON.stringify({ ...nextCard, revealed: true }));
+  const [nextCards, setNextCards] = useState([
+    { number: 0, revealed: false },
+    { number: 1, revealed: false },
+    { number: 2, revealed: false }
+  ]);
+  
+  const revealCard = (index) => {
+    const nextCards = JSON.parse(localStorage.getItem("nextCards"));
+    let updatedCard = { number: nextCards[index].number, revealed: true };
+    let newCards = [ ...nextCards.slice(0, index), updatedCard, ...nextCards.slice(index + 1) ];
+    console.log(newCards)
+    setNextCards(newCards);
+    localStorage.setItem("nextCards", JSON.stringify(newCards));
   }
 
   const randomiseNews = () => {
@@ -17,8 +25,15 @@ function App() {
       newsArray.push(i + 1);
     }
     const randomisedNews = shuffleArray(newsArray);
+    const nextCards = [
+      { number: randomisedNews[0], revealed: false },
+      { number: randomisedNews[1], revealed: false },
+      { number: randomisedNews[2], revealed: false }
+    ]
+    
     localStorage.setItem("news", JSON.stringify(randomisedNews));
-    localStorage.setItem("nextCard", JSON.stringify({number: randomisedNews[0], revealed: false}));
+    localStorage.setItem("nextCards", JSON.stringify(nextCards));
+    setNextCards(nextCards);
   }
   
   const shuffleArray = (array) => {
@@ -29,12 +44,16 @@ function App() {
     return array;
   }
 
+  console.log(nextCards)
   return (
     <div className="App">
       <div className="App-header"/>
-      <NewsCard card={nextCard} revealCard={revealCard}/>
+      <div className="Cards-container">
+        <NewsCard card={nextCards[0]} cardIndex={0} revealCard={revealCard}/>
+        <NewsCard card={nextCards[1]} cardIndex={1} revealCard={revealCard}/>
+        <NewsCard card={nextCards[2]} cardIndex={2} revealCard={revealCard}/>
+      </div>
       <button onClick={() => randomiseNews()}>Randomise News</button>
-      <button onClick={() => revealCard()}>Reveal Card</button>
     </div>
   );
 }

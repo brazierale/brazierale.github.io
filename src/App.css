@@ -6,6 +6,10 @@
   margin-top: 32px;
 }
 
+.Cards-container {
+  display: block;
+}
+
 button {
   border-width: 4px;
   background: white;
