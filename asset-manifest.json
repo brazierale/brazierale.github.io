@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/brazierale.github.io/static/css/main.344d3077.css",
+    "main.js": "/brazierale.github.io/static/js/main.a7cc8a88.js",
+    "static/js/787.c25d2c27.chunk.js": "/brazierale.github.io/static/js/787.c25d2c27.chunk.js",
+    "static/media/news-cards.png": "/brazierale.github.io/static/media/news-cards.f9511add2d9ae8a4947d.png",
+    "index.html": "/brazierale.github.io/index.html",
+    "main.344d3077.css.map": "/brazierale.github.io/static/css/main.344d3077.css.map",
+    "main.a7cc8a88.js.map": "/brazierale.github.io/static/js/main.a7cc8a88.js.map",
+    "787.c25d2c27.chunk.js.map": "/brazierale.github.io/static/js/787.c25d2c27.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.344d3077.css",
+    "static/js/main.a7cc8a88.js"
+  ]
+}
