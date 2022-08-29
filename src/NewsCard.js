@@ -17,7 +17,7 @@ const NewsCard = ({card, cardIndex, revealCard}) => {
     return { x: xPx, y: yPx};
   }
 
-  if ( card === null || !card.revealed ) {
+  if ( !card.revealed ) {
     const backStyle = {
       height: 260,
       width: 360,

@@ -4,19 +4,20 @@ import './App.css';
 
 const App = () => {
 
-  const [nextCards, setNextCards] = useState([
-    { number: 0, revealed: false },
-    { number: 1, revealed: false },
-    { number: 2, revealed: false }
-  ]);
-  
+  const getNewsFromStorage = () => { return JSON.parse(localStorage.getItem("news")); }
+  const getNextCardsFromStorage = () => { return JSON.parse(localStorage.getItem("nextCards")); }
+  const setNewsInStorage = (newsArray) => { localStorage.setItem("news", JSON.stringify(newsArray)); }
+  const setNextCardsInStorage = (nextCards) => { localStorage.setItem("nextCards", JSON.stringify(nextCards)); }
+
+  const [nextCards, setNextCards] = useState(getNextCardsFromStorage);
+
   const revealCard = (index) => {
-    const nextCards = JSON.parse(localStorage.getItem("nextCards"));
+    const nextCards = getNextCardsFromStorage();
     let updatedCard = { number: nextCards[index].number, revealed: true };
     let newCards = [ ...nextCards.slice(0, index), updatedCard, ...nextCards.slice(index + 1) ];
 
     setNextCards(newCards);
-    localStorage.setItem("nextCards", JSON.stringify(newCards));
+    setNextCardsInStorage(newCards);
   }
 
   const nextCardsByNews = (randomisedNews) => {
@@ -35,13 +36,13 @@ const App = () => {
     const randomisedNews = shuffleArray(newsArray);
     const nextCards = nextCardsByNews(randomisedNews);
     
-    localStorage.setItem("news", JSON.stringify(randomisedNews));
-    localStorage.setItem("nextCards", JSON.stringify(nextCards));
+    setNewsInStorage(randomisedNews);
     setNextCards(nextCards);
+    setNextCardsInStorage(nextCards);
   }
 
   const nextNews = () => {
-    const news = JSON.parse(localStorage.getItem("news"));
+    const news = getNewsFromStorage();
     
     for (let i = 0; i < 3; i++) {
       news.shift();
@@ -49,10 +50,9 @@ const App = () => {
 
     const nextCards = nextCardsByNews(news);
 
-    localStorage.setItem("news", JSON.stringify(news));
-    localStorage.setItem("nextCards", JSON.stringify(nextCards));
+    setNewsInStorage(news);
     setNextCards(nextCards);
-    console.log(news);
+    setNextCardsInStorage(nextCards);
   }
   
   const shuffleArray = (array) => {
@@ -63,23 +63,35 @@ const App = () => {
     return array;
   }
 
-  return (
-    <div className="App">
-      <div className="App-header"/>
-      <div className="Cards-container">
-        <div/>
-        <NewsCard card={nextCards[0]} cardIndex={0} revealCard={revealCard}/>
-        <NewsCard card={nextCards[1]} cardIndex={1} revealCard={revealCard}/>
-        <NewsCard card={nextCards[2]} cardIndex={2} revealCard={revealCard}/>
+  if (localStorage.getItem('news') === null) {
+    return (
+      <div className="App">
+        <div className="App-header"/>
+        <div className="Shuffle-button-container">
+          <button className="Shuffle-button" onClick={() => randomiseNews()}>Shuffle</button>
+        </div>
       </div>
-      <div className="Next-news-container">
-        <button className="Next-news-button" onClick={() => nextNews()}>Next News</button>
+    );
+  }
+  else {
+    return (
+      <div className="App">
+        <div className="App-header"/>
+        <div className="Cards-container">
+          <div/>
+          <NewsCard card={nextCards[0]} cardIndex={0} revealCard={revealCard}/>
+          <NewsCard card={nextCards[1]} cardIndex={1} revealCard={revealCard}/>
+          <NewsCard card={nextCards[2]} cardIndex={2} revealCard={revealCard}/>
+        </div>
+        <div className="Next-news-container">
+          <button className="Next-news-button" onClick={() => nextNews()}>Next News</button>
+        </div>
+        <div className="Shuffle-button-container">
+          <button className="Shuffle-button" onClick={() => randomiseNews()}>Shuffle</button>
+        </div>
       </div>
-      <div className="Shuffle-button-container">
-        <button className="Shuffle-button" onClick={() => randomiseNews()}>Shuffle</button>
-      </div>
-    </div>
-  );
+    );
+  }
 }
 
 export default App;
