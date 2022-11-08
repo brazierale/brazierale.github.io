@@ -45,3 +45,14 @@ button:hover {
 button:active {
   background-color: #89A0B0;
 }
+
+.Total {
+  padding: 48px;
+  font-size: 168px;
+  font-weight: bold;
+}
+
+.Total-change {
+  padding: 8px 12px 8px 12px;
+  font-size: 24px;
+}
