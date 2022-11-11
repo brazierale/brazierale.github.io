@@ -99,7 +99,7 @@ const App = () => {
     return (
       <div className='Switch-container'>
         <button
-          className='News'
+          className='Switch-button'
           onClick={() => {
             setView('news');
             setViewInStorage('news');
@@ -108,7 +108,7 @@ const App = () => {
           News
         </button>
         <button
-          className='Calculator'
+          className='Switch-button'
           onClick={() => {
             setView('calculator');
             setViewInStorage('calculator');
@@ -134,7 +134,6 @@ const App = () => {
   ) {
     return (
       <div className='App'>
-        <div className='App-header' />
         <Switch />
         <div className='Shuffle-button-container'>
           <button className='Shuffle-button' onClick={() => randomiseNews()}>
@@ -146,7 +145,6 @@ const App = () => {
   } else {
     return (
       <div className='App'>
-        <div className='App-header' />
         <Switch />
         <div className='Cards-container'>
           <div />

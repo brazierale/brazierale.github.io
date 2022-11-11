@@ -10,7 +10,7 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  margin: auto;
+  margin-top: 70px;
 }
 
 .Next-news-container{
@@ -21,6 +21,7 @@
 .Shuffle-button-container {
   display: flex;
   justify-content: center;
+  margin-top: 72px;
 }
 
 .Shuffle-button {
@@ -43,16 +44,76 @@ button:hover {
 }
 
 button:active {
-  background-color: #89A0B0;
+  background-color: #052136;
+}
+
+.Switch-container {
+  position: fixed;
+  width: 100%;
+  top: 0px;
+  background-color: white;
+}
+
+.Switch-button {
+  margin: 16px 12px 16px 12px;
 }
 
 .Total {
-  padding: 48px;
+  padding: 16px 0px 16px 0px;
   font-size: 168px;
   font-weight: bold;
+  width: 100%;
+  position: fixed;
+  top: 64px;
+  background-color: white;
 }
 
-.Total-change {
+.Manual-change-button {
+  margin: 8px 12px 8px 12px;
   padding: 8px 12px 8px 12px;
   font-size: 24px;
+}
+
+.Total-controls {
+  overflow: scroll;
+  height: 60%;
+}
+
+.Manual-controls {
+  position: fixed;
+  background-color: white;
+  width: 100%;
+  margin-top: 258px;
+}
+
+.Quick-controls {
+  margin-top: 324px;
+}
+
+.Selected-view {
+  display: inline-block;
+}
+
+.Dividend-container, .Price-container {
+  overflow: scroll;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+}
+
+.Dividend-name, .Price-name {
+  flex: 0 0 86px;
+  text-align: left;
+  padding-left: 12px;
+}
+
+.Dividend-button, .Buy-button, .Sell-button {
+  font-size: 16px;
+  border-width: 2px;
+  min-width: 20px;
+  margin: 16px 8px 16px 8px;
+  padding: 0px;
+  height: 34px;
+  width: 38px;
+  align-self: center;
 }
