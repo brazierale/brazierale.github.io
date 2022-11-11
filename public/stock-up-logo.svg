@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:1.5;">
+    <rect x="0" y="0" width="16" height="16" style="fill:rgb(204,214,221);stroke:rgb(137,160,176);stroke-width:2.08px;"/>
+    <g transform="matrix(0.87348,0,0,0.87348,1.01216,1.01216)">
+        <rect x="0" y="0" width="16" height="16" style="fill:white;"/>
+    </g>
+    <g transform="matrix(1.02661,-0.151831,0.174116,1.17729,-1.63901,-3.21166)">
+        <path d="M0.882,14.836L7.713,8.945L9.169,11.186L14.268,6.164L11.526,6.95L14.268,6.164L13.901,8.678" style="fill:none;stroke:rgb(201,0,0);stroke-width:0.9px;"/>
+    </g>
+    <g transform="matrix(1.1602,0,0,0.887119,-0.98419,4.97537)">
+        <g transform="matrix(8.33333,0,0,8.33333,13.6885,10.4928)">
+        </g>
+        <text x="9.189px" y="10.493px" style="font-family:'ShareTechMono-Regular', 'Share Tech Mono', monospace;font-size:8.333px;stroke:black;stroke-width:0.2px;stroke-linecap:butt;stroke-miterlimit:2;">U</text>
+    </g>
+    <g transform="matrix(1.1602,0,0,0.887119,-9.55525,4.97537)">
+        <g transform="matrix(8.33333,0,0,8.33333,13.6885,2.1595)">
+        </g>
+        <text x="9.189px" y="2.159px" style="font-family:'ShareTechMono-Regular', 'Share Tech Mono', monospace;font-size:8.333px;stroke:black;stroke-width:0.2px;stroke-linecap:butt;stroke-miterlimit:2;">S</text>
+    </g>
+</svg>
