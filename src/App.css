@@ -1,5 +1,7 @@
 .App {
   text-align: center;
+  background-color: #e1e8ed;
+  min-height: 1200px;
 }
 
 .App-header {
@@ -21,7 +23,6 @@
 .Shuffle-button-container {
   display: flex;
   justify-content: center;
-  margin-top: 72px;
 }
 
 .Shuffle-button {
@@ -31,27 +32,28 @@
 button {
   border-width: 4px;
   background: white;
-  color: #374146;
-  border-color: #374146;
+  color: #29376d;
+  border: 4px solid #29376d;
   margin: 32px 12px 12px 12px;
   padding: 8px;
   border-radius: 4px;
+  font-family: 'Chakra Petch';
   font-weight: bold;
 }
 
 button:hover {
-  background-color: #ccd6dd;
+  background-color: #e1e8ed;
 }
 
 button:active {
-  background-color: #052136;
+  background-color: #ccd6dd;
 }
 
 .Switch-container {
   position: fixed;
   width: 100%;
   top: 0px;
-  background-color: white;
+  background-color: #e1e8ed;
 }
 
 .Switch-button {
@@ -65,7 +67,7 @@ button:active {
   width: 100%;
   position: fixed;
   top: 64px;
-  background-color: white;
+  background-color: #e1e8ed;
 }
 
 .Manual-change-button {
@@ -81,7 +83,7 @@ button:active {
 
 .Manual-controls {
   position: fixed;
-  background-color: white;
+  background-color: #e1e8ed;
   width: 100%;
   margin-top: 258px;
 }
@@ -92,15 +94,26 @@ button:active {
 }
 
 .Selected-view {
-  display: inline-block;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
 }
 
 .Dividend-container,
 .Price-container {
   overflow: scroll;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
   display: flex;
   justify-content: left;
   align-items: center;
+}
+
+.Dividend-container,
+.Price-container::-webkit-scrollbar {
+  /* WebKit */
+  width: 0;
+  height: 0;
 }
 
 .Dividend-name,

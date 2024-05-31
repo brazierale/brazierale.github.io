@@ -3,7 +3,7 @@ import { stocks } from './Stocks';
 
 const Calculator = () => {
   const reset = () => {
-    setTotal(0);
+    setTotal(50);
   };
 
   const getTotalFromStorage = () => {
@@ -11,7 +11,7 @@ const Calculator = () => {
     if (total !== null) {
       return parseInt(total);
     } else {
-      return 0;
+      return 50;
     }
   };
   const setTotalInStorage = (total: number) => {

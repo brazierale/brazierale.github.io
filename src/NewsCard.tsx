@@ -1,6 +1,5 @@
 import newsSprite from './assets/news-cards.png';
 import newsBack from './assets/news-back.png';
-import './NewsCard.css';
 
 export type News = {
   number: number;
@@ -14,12 +13,17 @@ type Card = {
 };
 
 const NewsCard = ({ card, cardIndex, revealCard }: Card) => {
+  const cardHeight = 274;
+  const cardWidth = 374;
+  const margin = '24px';
+  const borderRadius = '5%';
+
   const getCardPosition = (newsNumber: number) => {
     const x = (newsNumber - 1) % 10;
     const y = (newsNumber - 1 - x) / 10;
 
-    const xSize = -360;
-    const ySize = -260;
+    const xSize = -cardWidth;
+    const ySize = -cardHeight;
 
     const xPx = x * xSize;
     const yPx = y * ySize;
@@ -29,9 +33,10 @@ const NewsCard = ({ card, cardIndex, revealCard }: Card) => {
 
   if (!card.revealed) {
     const backStyle = {
-      height: 260,
-      width: 360,
-      margin: 'auto',
+      height: cardHeight,
+      width: cardWidth,
+      margin: margin,
+      borderRadius: borderRadius,
       background: `url(${newsBack})`,
     };
     return (
@@ -45,15 +50,17 @@ const NewsCard = ({ card, cardIndex, revealCard }: Card) => {
     );
   } else {
     const cardPosition = getCardPosition(card.number);
+    const className = `News-card-${card.number}`;
 
     const cardStyle = {
-      height: 260,
-      width: 360,
-      margin: 'auto',
+      height: cardHeight,
+      width: cardWidth,
+      margin: margin,
+      borderRadius: borderRadius,
       background: `url(${newsSprite}) ${cardPosition.x}px ${cardPosition.y}px`,
     };
     return (
-      <div className='News-card'>
+      <div className={className}>
         <div
           className='News-revealed'
           style={cardStyle}
