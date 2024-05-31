@@ -4,6 +4,7 @@ import { stocks } from './Stocks';
 const Calculator = () => {
   const reset = () => {
     setTotal(50);
+    setTotalInStorage(50);
   };
 
   const getTotalFromStorage = () => {
