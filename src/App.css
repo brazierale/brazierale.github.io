@@ -110,7 +110,7 @@ button:active {
   align-items: center;
 }
 
-.Dividend-container,
+.Dividend-container::-webkit-scrollbar,
 .Price-container::-webkit-scrollbar {
   /* WebKit */
   width: 0;
@@ -122,6 +122,8 @@ button:active {
   flex: 0 0 86px;
   text-align: left;
   padding-left: 12px;
+  max-width: 128px;
+  max-height: 72px;
 }
 
 .Dividend-button,

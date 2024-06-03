@@ -106,7 +106,7 @@ const Calculator = () => {
     const dividendControls = () => {
       return stocks.map((stock) => (
         <div className='Dividend-container'>
-          <div className='Dividend-name'>{stock.name}</div>
+          <img className='Dividend-name' src={stock.image} alt={stock.name} />
           {dividendButtons(stock.dividends)}
         </div>
       ));
@@ -115,7 +115,7 @@ const Calculator = () => {
     const buyControls = () => {
       return stocks.map((stock) => (
         <div className='Price-container'>
-          <div className='Price-name'>{stock.name}</div>
+          <img className='Price-name' src={stock.image} alt={stock.name} />
           {buyButtons(stock.prices)}
         </div>
       ));
@@ -124,7 +124,7 @@ const Calculator = () => {
     const sellControls = () => {
       return stocks.map((stock) => (
         <div className='Price-container'>
-          <div className='Price-name'>{stock.name}</div>
+          <img className='Price-name' src={stock.image} alt={stock.name} />
           {sellButtons(stock.prices)}
         </div>
       ));
