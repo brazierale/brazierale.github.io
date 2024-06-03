@@ -40,6 +40,7 @@ button {
   border-radius: 4px;
   font-family: 'Chakra Petch';
   font-weight: bold;
+  transition: all 0.2s ease-in-out;
 }
 
 button:hover {
@@ -48,6 +49,8 @@ button:hover {
 
 button:active {
   background-color: #ccd6dd;
+  transform: scale(0.9);
+  transition: 0.1s;
 }
 
 .Switch-container {
