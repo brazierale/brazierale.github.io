@@ -1,5 +1,5 @@
-import newsSprite from './assets/news-cards.png';
-import newsBack from './assets/news-back.png';
+import newsSprite from './assets/news-cards@0.3x.png';
+import newsBack from './assets/news-back@0.3x.png';
 
 export type News = {
   number: number;
@@ -13,10 +13,10 @@ type Card = {
 };
 
 const NewsCard = ({ card, cardIndex, revealCard }: Card) => {
-  const cardHeight = 274;
-  const cardWidth = 374;
-  const margin = '24px';
-  const borderRadius = '5%';
+  const cardHeight = 246.6;
+  const cardWidth = 336.6;
+  const margin = '12px';
+  const borderRadius = '12px';
 
   const getCardPosition = (newsNumber: number) => {
     const x = (newsNumber - 1) % 10;
