@@ -13,8 +13,8 @@ type Card = {
 };
 
 const NewsCard = ({ card, cardIndex, revealCard }: Card) => {
-  const cardHeight = 246.6;
-  const cardWidth = 336.6;
+  const cardHeight = 244;
+  const cardWidth = 333;
   const margin = '12px';
   const borderRadius = '12px';
 
@@ -22,8 +22,8 @@ const NewsCard = ({ card, cardIndex, revealCard }: Card) => {
     const x = (newsNumber - 1) % 10;
     const y = (newsNumber - 1 - x) / 10;
 
-    const xSize = -cardWidth;
-    const ySize = -cardHeight;
+    const xSize = -cardWidth - 3.9;
+    const ySize = -cardHeight - 2.8;
 
     const xPx = x * xSize;
     const yPx = y * ySize;
