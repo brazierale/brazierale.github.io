@@ -1,6 +1,151 @@
 import { useState } from 'react';
 import { stocks } from './Stocks';
 
+type ControlProps = {
+  add: (toAdd: number) => void;
+  subtract: (toAdd: number) => void;
+};
+
+const ManualControls = ({ add, subtract }: ControlProps) => {
+  return (
+    <div className='Manual-controls'>
+      <button className='Manual-change-button' onClick={() => subtract(1)}>
+        -1
+      </button>
+      <button className='Manual-change-button' onClick={() => subtract(10)}>
+        -10
+      </button>
+      <button className='Manual-change-button' onClick={() => add(10)}>
+        +10
+      </button>
+      <button className='Manual-change-button' onClick={() => add(1)}>
+        +1
+      </button>
+    </div>
+  );
+};
+
+const QuickControls = ({ add, subtract }: ControlProps) => {
+  const getControlTypeFromStorage = () => {
+    const type = () => localStorage.getItem('controlType');
+    return type;
+  };
+
+  const setControlType = (controlType: string) => {
+    const currentType = localStorage.getItem('controlType');
+    if (controlType === currentType) {
+      setControlTypeInState(null);
+      localStorage.setItem('controlType', 'null');
+    } else {
+      setControlTypeInState(controlType);
+      localStorage.setItem('controlType', controlType);
+    }
+  };
+
+  const [controlType, setControlTypeInState] = useState<string | null>(
+    getControlTypeFromStorage()
+  );
+
+  const dividendButtons = (dividends: number[]) => {
+    return dividends.map((dividend, index) => (
+      <div key={`dividend-${index}`}>
+        <button className='Dividend-button' onClick={() => add(dividend)}>
+          +{dividend}
+        </button>
+      </div>
+    ));
+  };
+
+  const buyButtons = (prices: number[]) => {
+    return prices.map((price, index) => (
+      <div key={`buy-${index}`}>
+        <button className='Buy-button' onClick={() => subtract(price)}>
+          -{price}
+        </button>
+      </div>
+    ));
+  };
+
+  const sellButtons = (prices: number[]) => {
+    return prices.map((price, index) => (
+      <div key={`sell-${index}`}>
+        <button className='Sell-button' onClick={() => add(price)}>
+          +{price}
+        </button>
+      </div>
+    ));
+  };
+
+  const dividendControls = () => {
+    return stocks.map((stock) => (
+      <div className='Dividend-container' key={stock.id}>
+        <img className='Dividend-name' src={stock.image} alt={stock.name} />
+        {dividendButtons(stock.dividends)}
+      </div>
+    ));
+  };
+
+  const buyControls = () => {
+    return stocks.map((stock) => (
+      <div className='Price-container' key={stock.id}>
+        <img className='Price-name' src={stock.image} alt={stock.name} />
+        {buyButtons(stock.prices)}
+      </div>
+    ));
+  };
+
+  const sellControls = () => {
+    return stocks.map((stock) => (
+      <div className='Price-container' key={stock.id}>
+        <img className='Price-name' src={stock.image} alt={stock.name} />
+        {sellButtons(stock.prices)}
+      </div>
+    ));
+  };
+
+  const selectedView = () => {
+    switch (controlType) {
+      case 'buy': {
+        return buyControls();
+      }
+      case 'sell': {
+        return sellControls();
+      }
+      case 'dividend': {
+        return dividendControls();
+      }
+      default:
+        return null;
+    }
+  };
+
+  return (
+    <div className='Quick-controls'>
+      <div className='View-buttons'>
+        <button
+          className='Buy-view-button'
+          onClick={() => setControlType('buy')}
+        >
+          Buy
+        </button>
+        <button
+          className='Sell-view-button'
+          onClick={() => setControlType('sell')}
+        >
+          Sell
+        </button>
+        <button
+          className='Dividend-view-button'
+          onClick={() => setControlType('dividend')}
+        >
+          Dividend
+        </button>
+      </div>
+      <div className='Selected-view'>{selectedView()}</div>
+    </div>
+  );
+};
+
 const Calculator = () => {
   const reset = () => {
     setTotal(50);
@@ -33,151 +178,12 @@ const Calculator = () => {
     setTotalInStorage(newTotal);
   };
 
-  const ManualControls = () => {
-    return (
-      <div className='Manual-controls'>
-        <button className='Manual-change-button' onClick={() => subtract(1)}>
-          -1
-        </button>
-        <button className='Manual-change-button' onClick={() => subtract(10)}>
-          -10
-        </button>
-        <button className='Manual-change-button' onClick={() => add(10)}>
-          +10
-        </button>
-        <button className='Manual-change-button' onClick={() => add(1)}>
-          +1
-        </button>
-      </div>
-    );
-  };
-
-  const QuickControls = () => {
-    const getControlTypeFromStorage = () => {
-      const type = () => localStorage.getItem('controlType');
-      return type;
-    };
-
-    const setControlType = (controlType: string) => {
-      const currentType = localStorage.getItem('controlType');
-      if (controlType === currentType) {
-        setControlTypeInState(null);
-        localStorage.setItem('controlType', 'null');
-      } else {
-        setControlTypeInState(controlType);
-        localStorage.setItem('controlType', controlType);
-      }
-    };
-
-    const [controlType, setControlTypeInState] = useState(
-      getControlTypeFromStorage()
-    );
-
-    const dividendButtons = (dividends: number[]) => {
-      return dividends.map((dividend) => (
-        <div>
-          <button className='Dividend-button' onClick={() => add(dividend)}>
-            +{dividend}
-          </button>
-        </div>
-      ));
-    };
-
-    const buyButtons = (prices: number[]) => {
-      return prices.map((price) => (
-        <div>
-          <button className='Buy-button' onClick={() => subtract(price)}>
-            -{price}
-          </button>
-        </div>
-      ));
-    };
-
-    const sellButtons = (prices: number[]) => {
-      return prices.map((price) => (
-        <div>
-          <button className='Sell-button' onClick={() => add(price)}>
-            +{price}
-          </button>
-        </div>
-      ));
-    };
-
-    const dividendControls = () => {
-      return stocks.map((stock) => (
-        <div className='Dividend-container'>
-          <img className='Dividend-name' src={stock.image} alt={stock.name} />
-          {dividendButtons(stock.dividends)}
-        </div>
-      ));
-    };
-
-    const buyControls = () => {
-      return stocks.map((stock) => (
-        <div className='Price-container'>
-          <img className='Price-name' src={stock.image} alt={stock.name} />
-          {buyButtons(stock.prices)}
-        </div>
-      ));
-    };
-
-    const sellControls = () => {
-      return stocks.map((stock) => (
-        <div className='Price-container'>
-          <img className='Price-name' src={stock.image} alt={stock.name} />
-          {sellButtons(stock.prices)}
-        </div>
-      ));
-    };
-
-    const selectedView = () => {
-      switch (controlType) {
-        case 'buy': {
-          return buyControls();
-        }
-        case 'sell': {
-          return sellControls();
-        }
-        case 'dividend': {
-          return dividendControls();
-        }
-        default:
-      }
-    };
-
-    return (
-      <div className='Quick-controls'>
-        <div className='View-buttons'>
-          <button
-            className='Buy-view-button'
-            onClick={() => setControlType('buy')}
-          >
-            Buy
-          </button>
-          <button
-            className='Sell-view-button'
-            onClick={() => setControlType('sell')}
-          >
-            Sell
-          </button>
-          <button
-            className='Dividend-view-button'
-            onClick={() => setControlType('dividend')}
-          >
-            Dividend
-          </button>
-        </div>
-        <div className='Selected-view'>{selectedView()}</div>
-      </div>
-    );
-  };
-
   return (
     <div className='Calculator-container'>
       <div className='Total'>{total}</div>
       <div className='Total-controls'>
-        <ManualControls />
-        <QuickControls />
+        <ManualControls add={add} subtract={subtract} />
+        <QuickControls add={add} subtract={subtract} />
         <button className='Reset' onClick={() => reset()}>
           Reset
         </button>
