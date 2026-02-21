@@ -122,7 +122,7 @@ const App = () => {
 
   if (view === 'calculator') {
     return (
-      <div className='App'>
+      <div className='App App-calculator'>
         <div className='App-header' />
         <Switch />
         <Calculator />
