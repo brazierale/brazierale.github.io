@@ -60,6 +60,9 @@ button:active {
   justify-content: center;
   background-color: #e1e8ed;
   flex-shrink: 0;
+  position: sticky;
+  top: 0;
+  z-index: 10;
 }
 
 .Switch-button {
